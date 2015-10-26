@@ -1,0 +1,13 @@
+<div id='header' class="header">
+  <nav>
+    <ul class="nav nav-pills pull-right">
+      <li role="presentation" class="active"><a href="#" class="links" data-template="home">Home</a></li>
+      {^req.authenticated}
+        <li role="presentation"><a href="#" class="links" data-template="signup">Sign Up</a></li>
+        <li role="presentation"><a href="#" class="links" data-template="login">Login</a></li>
+      {:else}
+        <li role="presentation"><a href='#' class="links" data-template="account">Account</a></li>
+      {/req.authenticated}
+    </ul>
+  </nav>
+</div>

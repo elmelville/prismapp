@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <h1>Home</h1>
+  {^req.authenticated}
+	  <div class="body-text">Welcome to Prism, you can sign up <div class='link' data-template='signup'>here</div> or log in <div class='link' data-template='login'>here</div></div>
+  {:else}
+	<div class='body-text'>
+	Welcome back {req.user.name}, you can check your account info <div class='link' data-template='account'>here</div>
+	</div>
+  {/req.authenticated}
+</div>

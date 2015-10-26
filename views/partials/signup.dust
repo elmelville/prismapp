@@ -1,0 +1,16 @@
+<div class="well">
+  <h1 class="align-center">Sign Up</h1>
+  <hr/>
+  <div>
+    {^req.authenticated}
+      <h3>Signup</h3>
+      <input type="text" id="signupName" placeholder='name'/>
+      <input type='email' id='signupEmail' placeholder="email"/>
+      <input type="password" id="signupPassword" placeholder="password"/>
+      <input type='password' id='signupConfirmPassword' placeholder='confirm password'/>
+      <button id='signupButton'>Sign Up </button>
+    {:else}
+      <h3>It appears you're already signed in</h3>
+    {/req.authenticated}
+  </div>
+</div>

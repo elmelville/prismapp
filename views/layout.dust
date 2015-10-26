@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dust SPA</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    {> "partials/header"/}
+    <br/>
+    <div id="template">
+      {> "partials/home"/}
+    </div>
+    <footer class="footer">
+      <p>Styled by Bootstrap&copy;</p>
+    </footer>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/dustjs-linkedin/2.5.1/dust-core.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/dustjs-helpers/1.5.0/dust-helpers.min.js"></script>
+
+  <script type="text/javascript" src="/templates/home.js"></script>
+  <script type="text/javascript" src="/templates/header.js"></script>
+  <script type="text/javascript" src="/templates/signup.js"></script>
+  <script type="text/javascript" src="/templates/login.js"></script>
+  <script type="text/javascript" src="/templates/account.js"></script>
+  <script type="text/javascript" src="/js/clickHandler.js"></script>
+</body>
+</html>

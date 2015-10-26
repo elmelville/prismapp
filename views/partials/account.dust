@@ -1,0 +1,22 @@
+<div class="well">
+  <h1 class="align-center">Account</h1>
+  <hr/>
+  <div>
+    {?req.authenticated}
+      {?req.user.paymentDue}
+        <h3>Payment Details</h3>
+        <div class='user-info'>Next payout due on {req.user.paymentDue} for {req.user.paymentAmount}</div>
+      {:else}
+        <div class='body-text'>No payments are currently due for your account.</div>
+      {/req.user.paymentDue}
+      <h3>Buy PRD</h3>
+      <input type='number' id='buy-input' size='20' placeholder='amount'>
+      <button id='buy-submit'>Submit Buy Order</button>
+    {:else}
+      <div class='body-text'>
+        You shoudn't be here, your IP has been logged and further infractions will result in a ban from our server.
+      </div>
+    {/req.authenticated}
+  </div>
+</div>
+
