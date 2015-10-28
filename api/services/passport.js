@@ -232,13 +232,36 @@ passport.callback = function (req, res, next) {
     if (action === 'register' && !req.user) {
       this.protocols.local.register(req, res, next);
     }
+    else if (action === 'login' && !req.user){
+      console.log('entering login');
+      this.protocols.local.login(req, identifier, password, next);
+    }
     else if (action === 'connect' && req.user) {
       console.log('entering connect');
       this.protocols.local.connect(req, res, next);
     }
-    else if (action === 'login' && !req.user){
-      console.log('entering login');
-      this.protocols.local.login(req, identifier, password, next);
+    else if (action === 'buy' && req.user) {
+      var now = new Date().toISOString();
+      var buyAccepted = true;
+      Purchases.create({
+        user : req.user.username,
+        orderPlaced : now,
+        purchaseAmount : req.param('buyAmount')
+      }, function(err){
+        console.log('entry created');
+        if (err){
+          buyAccepted = false;
+          next(err,true,null,{buyAccepted:buyAccepted});
+        }else{
+          next(null,true,null,{buyAccepted:buyAccepted});
+        }
+      });
+    }
+    else if (action === 'authorise' && req.user){
+      res.send(req.session);
+    }
+    else if (action === 'authorise' && !req.user){
+      res.send(200, {noUser:true});
     }
     else if (action === 'disconnect' && req.user) {
       this.disconnect(req, res, next);

@@ -73,31 +73,10 @@ var AuthController = {
     // mark the user as logged out for auth purposes
     req.session.authenticated = false;
     
-    res.redirect('/');
+    res.send(200);
   },
 
-  /**
-   * Render the registration page
-   *
-   * Just like the login form, the registration form is just simple HTML:
-   *
-      <form role="form" action="/auth/local/register" method="post">
-        <input type="text" name="username" placeholder="Username">
-        <input type="text" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Sign up</button>
-      </form>
-   *
-   * @param {Object} req
-   * @param {Object} res
-   */
-  register: function (req, res) {
-    /*
-    res.view({
-      errors: req.flash('error')
-    });
-    */
-  },
+
 
   /**
    * Create a third-party authentication endpoint
@@ -147,12 +126,18 @@ var AuthController = {
       // These views should take care of rendering the error messages.
       var action = req.param('action');
 
-      res.send(500,{error: "Internal error"});
+      res.send(200);
     }
 
     passport.callback(req, res, function (err, user, challenges, statuses) {
       if (err || !user) {
         return tryAgain(challenges);
+      }
+      if(statuses){
+        if(statuses.buyAccepted){
+          req.session.buyMessage = 'Your buy request has been accepted and will be processed within '+
+          '24 hours, please make sure that you accept paybill requests from prismSecurities';
+        }
       }
       req.login(user, function (err) {
         if (err) {
